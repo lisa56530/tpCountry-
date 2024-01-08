@@ -42,5 +42,16 @@ public class CountryRepositoryTest {
         long nombre = countryDAO.count();
         assertEquals(combienDePaysDansLeJeuDeTest, nombre, "On doit trouver 4 pays" );
     }
-
+    @Test
+    @Sql ("test-data.sql")
+void onSaitLesNomsEtLesPop (){
+log.info("On connait le nombre de pays présent dans la table :3") ;
+assertEquals(3 ,countryDAO.lesPays().size() );
+}
+@Test
+@Sql ("test-data.sql")
+void onSaitLaPop () {
+    log.info("On connait la population du pays 2 : 18 millions ");
+    assertEquals(18, countryDAO.sommePop(2));
+}
 }
