@@ -13,11 +13,12 @@ import monprojet.entity.Country;
 public interface CountryRepository extends JpaRepository<Country, Integer> {
     @Query ("SELECT SUM(c.population) AS population "
     + "FROM City c "
-    + "WHERE c.Country.id = :id ")
+    + "WHERE c.country.id = :id ")
     public int sommePop (int id) ;
 
-    @Query ("Select c.country.nom as Nom , sum (c.population) as population "
-            + "FROM City c" )
+    @Query ("Select c.country.name as nom , sum (c.population) as population "
+            + "FROM City c "
+    + "GROUP BY name ")
     public List<Projection> lesPays () ;
 
 }
